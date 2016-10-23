@@ -5,25 +5,16 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
+    <import resource="loggers.xml"/>
+
     <bean id="client" class="ua.rd.springtkach.beans.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <!--<bean id="eventLogger" class="ua.rd.springtkach.loggers.ConsoleEventLogger" />-->
-
-    <!--<bean id="eventLogger" class="ua.rd.springtkach.loggers.FileEventLogger" init-method="init">-->
-        <!--<constructor-arg value="event_file.txt"/>-->
-    <!--</bean>-->
-
-    <bean id="eventLogger" class="ua.rd.springtkach.loggers.CacheFileEventLogger" init-method="init" destroy-method="destroy">
-        <constructor-arg value="event_file.txt"/>
-        <constructor-arg value="3"/>
-    </bean>
-
     <bean id="app" class="ua.rd.springtkach.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="cacheFileEventLogger"/>
     </bean>
 
     <bean id="dateFormat" class="java.text.DateFormat"
@@ -35,6 +26,4 @@
         </constructor-arg>
         <constructor-arg ref="dateFormat"/>
     </bean>
-
-
 </beans>
