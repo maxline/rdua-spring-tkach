@@ -10,7 +10,16 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="ua.rd.springtkach.loggers.ConsoleEventLogger" />
+    <!--<bean id="eventLogger" class="ua.rd.springtkach.loggers.ConsoleEventLogger" />-->
+
+    <!--<bean id="eventLogger" class="ua.rd.springtkach.loggers.FileEventLogger" init-method="init">-->
+        <!--<constructor-arg value="event_file.txt"/>-->
+    <!--</bean>-->
+
+    <bean id="eventLogger" class="ua.rd.springtkach.loggers.CacheFileEventLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="event_file.txt"/>
+        <constructor-arg value="3"/>
+    </bean>
 
     <bean id="app" class="ua.rd.springtkach.App">
         <constructor-arg ref="client"/>
@@ -22,7 +31,7 @@
 
     <bean id="event" class="ua.rd.springtkach.beans.Event" scope="prototype">
         <constructor-arg>
-            <bean class = "java.util.Date"/>
+            <bean class="java.util.Date"/>
         </constructor-arg>
         <constructor-arg ref="dateFormat"/>
     </bean>

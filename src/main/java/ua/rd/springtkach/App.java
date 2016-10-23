@@ -1,28 +1,30 @@
 package ua.rd.springtkach;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.rd.springtkach.beans.Client;
 import ua.rd.springtkach.beans.Event;
 import ua.rd.springtkach.loggers.ConsoleEventLogger;
+import ua.rd.springtkach.loggers.EventLogger;
 
 /**
  *
  */
 public class App {
     private Client client;
-    private ConsoleEventLogger eventLogger;
+    private EventLogger eventLogger;
 
     public App() {
     }
 
-    public App(Client client, ConsoleEventLogger eventLogger) {
+    public App(Client client, EventLogger eventLogger) {
         this.client = client;
         this.eventLogger = eventLogger;
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         //App app = new App();
         App app = (App) ctx.getBean("app");
         Event event = (Event) ctx.getBean("event");
@@ -34,6 +36,8 @@ public class App {
         event = (Event) ctx.getBean("event");
         app.logEvent("Some event for user 2", event);
         //System.out.println(client);
+
+        ctx.close();
     }
 
     private void logEvent(String msg, Event event) {
