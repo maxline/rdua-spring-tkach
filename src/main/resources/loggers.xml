@@ -16,4 +16,14 @@
           init-method="init" destroy-method="destroy">
         <constructor-arg value="3"/>
     </bean>
+
+    <bean id="combinedEventLogger" class="ua.rd.springtkach.loggers.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleLogger"/>
+                <ref bean="fileLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
 </beans>

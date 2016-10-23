@@ -6,6 +6,7 @@ package ua.rd.springtkach.beans;
 public class Client {
     private String id;
     private String fullName;
+    private String greeting;
 
     public Client(String id, String fullName) {
         this.id = id;
@@ -28,11 +29,16 @@ public class Client {
         this.fullName = fullName;
     }
 
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "id='" + id + '\'' +
                 ", fullName='" + fullName + '\'' +
+                ", geeting='" + greeting + '\'' +
                 '}';
     }
 }
