@@ -69,4 +69,7 @@
         <constructor-arg ref="dateFormat"/>
     </bean>
 
+    <bean id="monitor" class="ua.rd.springtkach.util.Monitor"/>
+    <bean id="awared" class="ua.rd.springtkach.util.AwareBean" init-method="init"/>
+
 </beans>
